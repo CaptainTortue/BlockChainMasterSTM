@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/rsa-key-generation', function () {
+    return view('rsa-key-generation-page');
+});
+
+Route::get('/hash-text', function () {
+    return view('hash-text-page');
+});

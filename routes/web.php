@@ -24,3 +24,15 @@ Route::get('/rsa-key-generation', function () {
 Route::get('/hash-text', function () {
     return view('hash-text-page');
 });
+
+Route::get('/wallet', function () {
+    return view('wallet-page');
+});
+
+Route::get('/login', function () {
+    return view('login-page');
+});
+
+Route::get('/register', function () {
+    return view('register-page');
+});

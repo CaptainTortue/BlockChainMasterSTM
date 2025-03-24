@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('hash');
             $table->string('previous_hash');
-            $table->integer('merkle_root');
+            $table->string('merkle_root');
             $table->integer('difficulty');
             $table->float('value_on_creation', 8, 2);
             $table->float('reward', 8, 2);

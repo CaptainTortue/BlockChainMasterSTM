@@ -27,7 +27,7 @@ class Transaction extends Model
         return $this->belongsTo(Wallet::class, 'sender_id');
     }
 
-    public function receiver()
+    public function recipient()
     {
         return $this->belongsTo(Wallet::class, 'receiver_id');
     }

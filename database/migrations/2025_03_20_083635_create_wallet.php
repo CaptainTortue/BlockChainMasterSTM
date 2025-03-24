@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('hash');
             $table->string('name');
             $table->float('balance', 8, 2)->default(0);
             $table->string('address');

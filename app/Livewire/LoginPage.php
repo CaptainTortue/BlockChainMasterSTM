@@ -6,12 +6,15 @@ use Livewire\Component;
 
 class LoginPage extends Component
 {
+    public $login;
+    public $password;
+
     public function render()
     {
         return view('livewire.login-page');
     }
 
-    public function login()
+    public function loginUser()
     {
         $this->validate([
             'login' => 'required',

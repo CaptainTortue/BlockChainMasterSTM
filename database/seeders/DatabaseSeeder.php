@@ -18,5 +18,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // create users, for each user create a wallet
+        \App\Models\User::factory(10)->create()->each(function ($user) {
+            \App\Models\Wallet::factory()->create([
+                'balance' => random_int(0, 1000),
+                'user_id' => $user->id,
+            ]);
+        });
     }
 }

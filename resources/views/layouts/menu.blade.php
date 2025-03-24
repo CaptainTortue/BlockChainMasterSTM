@@ -8,19 +8,21 @@
     @vite('resources/css/app.css')
 </head>
 <body>
+@livewireScripts
+@stack('scripts')
 <header>
     <nav class="bg-blue-500 h-20 flex">
         <ul class="flex gap-10 ml-10 mt-6">
             <li><a class="font-bold text-white" href="/">Accueil</a></li>
-            <li><a href="/rsa-key-generation" class="text-white">Génération de clé RSA</a></li>
-            <li><a href="/hash-text" class="text-white">Hasher un texte</a></li>
+            <li><a href="{{ url('/rsa-key-generation') }}" class="text-white">Génération de clé RSA</a></li>
+            <li><a href="{{ url('/hash-text') }}" class="text-white">Hasher un texte</a></li>
             <!-- only if connected -->
             @if(Auth::check())
-            <li><a href="/wallet" class="text-white">Portefeuille</a></li>
-            <li><a href="/logout" class="text-white">Déconnexion</a></li>
+            <li><a href="{{ url('/wallet') }}" class="text-white">Portefeuille</a></li>
+            <li><a href="{{ url('/logout') }}" class="text-white">Déconnexion</a></li>
             @else
-            <li><a href="/login" class="text-white">Connexion</a></li>
-            <li><a href="/register" class="text-white">Inscription</a></li>
+            <li><a href="{{ url('/login') }}" class="text-white">Connexion</a></li>
+            <li><a href="{{ url('/register') }}" class="text-white">Inscription</a></li>
             @endif
 
         </ul>
@@ -29,6 +31,5 @@
 <main>
     @yield('content')
 </main>
-@livewireScripts
 </body>
 </html>

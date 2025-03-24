@@ -36,3 +36,8 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register-page');
 });
+
+Route::get('/logout', function () {
+    auth()->logout();
+    return redirect('/');
+});

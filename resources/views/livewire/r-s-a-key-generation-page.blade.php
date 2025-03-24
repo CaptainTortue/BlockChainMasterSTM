@@ -17,4 +17,33 @@
         </div>
     </div>
     @endif
+
+    @if($privateKey && $publicKey)
+    <button onclick="downloadPrivateKey()" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400 m-4">Télécharger la clé privée</button>
+    <button onclick="downloadPublicKey()" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400 m-4">Télécharger la clé publique</button>
+    @endif
 </div>
+
+@push('scripts')
+<script>
+    function downloadPrivateKey() {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(@this.privateKey));
+        element.setAttribute('download', 'private_key.txt');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
+    function downloadPublicKey() {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(@this.publicKey));
+        element.setAttribute('download', 'public_key.txt');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+</script>
+@endpush

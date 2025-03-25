@@ -20,7 +20,6 @@ class Bloc extends Model
         'merkle_root',
         'nonce',
         'difficulty',
-        'value_on_creation',
         'reward',
         'miner_id',
         'created_at',

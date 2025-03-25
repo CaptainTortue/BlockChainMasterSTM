@@ -16,6 +16,10 @@
             <li><a class="font-bold text-white" href="/">Accueil</a></li>
             <li><a href="{{ url('/rsa-key-generation') }}" class="text-white">Génération de clé RSA</a></li>
             <li><a href="{{ url('/hash-text') }}" class="text-white">Hasher un texte</a></li>
+            <li><a href="{{ url('/blocs') }}" class="text-white">Blocs</a></li>
+            @if(Auth::check() && Auth::user()->isMiner())
+            <li><a href="{{ url('/mempool') }}" class="text-white">Mempool</a></li>
+            @endif
             <!-- only if connected -->
             @if(Auth::check())
             <li><a href="{{ url('/wallet') }}" class="text-white">Portefeuille</a></li>

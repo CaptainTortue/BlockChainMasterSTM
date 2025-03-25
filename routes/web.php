@@ -41,3 +41,11 @@ Route::get('/logout', function () {
     auth()->logout();
     return redirect('/');
 });
+
+Route::get('mempool', function () {
+    return view('mempool-page');
+});
+
+Route::get('blocs', function () {
+    return view('bloc-list-page');
+});

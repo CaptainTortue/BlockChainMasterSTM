@@ -60,12 +60,12 @@
                 <button wire:click="goToPage(-3)" class="rounded p-2 border-2 hover:bg-blue-300 border-black m-2">{{$page - 3}}</button>
                 @endif
                 @if ($page >= 2)
-                <button wire:click="goToPage(-2)" class="rounded p-2 border-2 hover:bg-blue-300 border-black m-2">-{{$page - 2}}</button>
+                <button wire:click="goToPage(-2)" class="rounded p-2 border-2 hover:bg-blue-300 border-black m-2">{{$page - 2}}</button>
                 @endif
                 @if ($page >= 1)
                 <button wire:click="goToPage(-1)" class="rounded p-2 border-2 hover:bg-blue-300 border-black m-2">{{$page - 1}}</button>
                 @endif
-                <button class="rounded p-2 border-2 hover:bg-blue-300 border-black m-2">{{ $page }}</button>
+                <button class="rounded p-2 border-2 border-black m-2 bg-blue-100">{{ $page }}</button>
                 @if ($wallet->transactions->count() > ($page + 1) * $numberOfTransactionsByPage)
                 <button wire:click="goToPage(1)" class="rounded p-2 border-2 hover:bg-blue-300 border-black m-2">{{$page + 1}}</button>
                 @endif
@@ -86,10 +86,14 @@
     <div class="flex flex-wrap">
         <div class="mx-auto">
             <p class="text-xl font-bold m-4 text-center w-full">Envoyer de l'argent depuis ce portefeuille</p>
-            <input type="text" wire:model="recipient" placeholder="Adresse du destinataire" class="border-2 m-4">
+            <input type="text" wire:model="address" placeholder="Adresse du destinataire" class="border-2 m-4">
             <input type="number" wire:model="amount" placeholder="Montant" class="border-2 m-4">
-            <input type="text" wire:model="privateKey" placeholder="Clé privée" class="border-2 m-4">
             <button wire:click="sendMoney" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400">Envoyer de l'argent</button>
+            <p wire:loading wire:target="sendMoney">Transaction en cours...</p>
+            <!-- success message -->
+            @if ($successTransaction)
+            <span class="text-green-500">Transaction effectuée avec succès</span>
+            @endif
         </div>
     </div>
 </div>

@@ -41,4 +41,20 @@ class Transaction extends Model
     {
         return $this->bloc_id == null;
     }
+
+    // set parameters for transaction on save
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($transaction) {
+            // fee is 0.1% of the transaction amount, rounded to 2 decimal places
+            $transaction->fee = round($transaction->amount * 0.001, 2);
+            $transaction->hash = hash('sha256', $transaction->sender_id . $transaction->receiver_id . $transaction->amount . $transaction->nonce . $transaction->fee);
+            // update wallet balance of sender and receiver
+            $transaction->sender->balance -= $transaction->amount + $transaction->fee;
+            $transaction->sender->save();
+            $transaction->recipient->balance += $transaction->amount;
+            $transaction->recipient->save();
+        });
+    }
 }

@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('hash');
-            $table->string('previous_hash');
+            // nullable if it's the first bloc or if it's not validate yet
+            $table->string('previous_hash')->nullable();
             $table->string('merkle_root');
             $table->integer('difficulty');
-            $table->float('value_on_creation', 8, 2);
             $table->float('reward', 8, 2);
             // user_id is the miner
             $table->foreignId('miner_id')->constrained('users');

@@ -10,6 +10,9 @@ class WalletDisplayer extends Component
     public $transactions;
     public $page = 0;
     public $numberOfTransactionsByPage = 3;
+    public $amount;
+    public $address;
+    public $successTransaction = false;
 
     public function mount($wallet)
     {
@@ -42,6 +45,18 @@ class WalletDisplayer extends Component
             $this->page = 0;
         }
         $this->reloadTransactions();
+    }
+
+    public function sendMoney()
+    {
+        $this->validate([
+            'amount' => 'required|numeric|min:0.01',
+            'address' => 'required|exists:wallet,address',
+        ]);
+        $this->wallet->sendMoneyToOtherWallet($this->address, $this->amount);
+        $this->reloadTransactions();
+        // display success message
+        $this->successTransaction = true;
     }
 
     public function render()

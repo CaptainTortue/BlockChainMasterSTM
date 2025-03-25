@@ -30,4 +30,15 @@ class Wallet extends Model
     {
         return $this->hasMany(Transaction::class, 'sender_id');
     }
+
+    public function sendMoneyToOtherWallet($address, $amount)
+    {
+        // create transaction
+        $transaction = new Transaction();
+        $transaction->sender_id = $this->id;
+        $transaction->receiver_id = Wallet::where('address', $address)->first()->id;
+        $transaction->amount = $amount;
+        $transaction->save();
+        $this->refresh();
+    }
 }

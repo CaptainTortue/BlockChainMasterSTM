@@ -20,7 +20,7 @@ class BlocFactory extends Factory
         return [
             'hash' => $this->faker->sha256,
             // get hash from last bloc
-            'previous_hash' => Bloc::all()->count() > 0 ? Bloc::all()->last()->hash : 0,
+            'previous_hash' => Bloc::all()->count() > 0 ? Bloc::all()->last()->hash : null,
             'merkle_root' => $this->faker->sha256,
             'difficulty' => $this->faker->randomNumber(5),
             'value_on_creation' => $this->faker->randomFloat(2, 1, 1000),

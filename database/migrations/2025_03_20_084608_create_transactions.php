@@ -20,9 +20,9 @@ return new class extends Migration
             $table->foreignId('receiver_id')->nullable()->constrained('wallet');
             $table->float('amount', 8, 2);
             $table->string('hash');
-            $table->integer('nonce');
+            $table->integer('nonce')->nullable();
             $table->float('fee', 8, 2);
-            $table->string('signature');
+            $table->string('signature')->nullable();
             $table->integer('bloc_position');
         });
     }

@@ -17,6 +17,9 @@
             <li><a href="{{ url('/rsa-key-generation') }}" class="text-white">Génération de clé RSA</a></li>
             <li><a href="{{ url('/hash-text') }}" class="text-white">Hasher un texte</a></li>
             <li><a href="{{ url('/blocs') }}" class="text-white">Blocs</a></li>
+            @if(Auth::check() && Auth::user()->isValidator())
+            <li><a href="{{ url('/validate-bloc') }}" class="text-white">Validation de blocs</a></li>
+            @endif
             @if(Auth::check() && Auth::user()->isMiner())
             <li><a href="{{ url('/mempool') }}" class="text-white">Mempool</a></li>
             @endif

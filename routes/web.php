@@ -49,3 +49,7 @@ Route::get('mempool', function () {
 Route::get('blocs', function () {
     return view('bloc-list-page');
 });
+
+Route::get('validate-bloc', function () {
+    return view('bloc-validation-page');
+});

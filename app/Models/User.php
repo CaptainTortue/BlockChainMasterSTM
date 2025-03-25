@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->role == 'miner' || $this->role == 'admin';
     }
 
+    public function isValidator()
+    {
+        return $this->role == 'validator' || $this->role == 'admin';
+    }
+
     public function wallets()
     {
         return $this->hasMany(Wallet::class);

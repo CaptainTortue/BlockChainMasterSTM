@@ -27,6 +27,17 @@ class Bloc extends Model
         'value_created',
     ];
 
+    public function setToValidate()
+    {
+        // get last bloc with previous hash not null, or last bloc if no previous hash
+        $previousBloc = Bloc::whereNotNull('previous_hash')->latest()->first();
+        if (!$previousBloc) {
+            $previousBloc = Bloc::latest()->first();
+        }
+        $this->previous_hash = $previousBloc->hash;
+        $this->save();
+    }
+
     public function miner()
     {
         return $this->belongsTo(User::class);

@@ -7,7 +7,11 @@
         @foreach($mempoolTransactions as $transaction)
             <div class="border rounded p-4 w-fit my-4 hover:shadow-lg" wire:click="addTransactionToBloc({{ $transaction->id }})">
                 <p class="text-center">ID: {{ $transaction->id }} Frais: {{ number_format($transaction->fee, 2) }}</p>
+                @if ($transaction->sender_id)
                 <p class="text-center">Expéditeur: {{ $transaction->sender->address }} {{ $transaction->sender->name }}</p>
+                @else
+                <p class="text-center">Expéditeur: Récompense</p>
+                @endif
                 <p class="text-center">Destinataire: {{ $transaction->recipient->address }} {{ $transaction->recipient->name }}</p>
                 <p class="text-center">Montant: {{ number_format($transaction->amount, 2) }}</p>
                 <p class="text-center">Date: {{ $transaction->created_at }}</p>
@@ -24,7 +28,11 @@
                 @foreach($transactionsForBlock as $transactionForBlock)
                 <div class="border rounded p-4 w-fit my-4 hover:bg-blue-100" wire:click="removeTransactionFromBloc({{ $transactionForBlock->id }})">
                     <p class="text-center">ID: {{ $transactionForBlock->id }} Frais: {{ number_format($transactionForBlock->fee, 2) }}</p>
+                    @if ($transactionForBlock->sender_id)
                     <p class="text-center">Expéditeur: {{ $transactionForBlock->sender->address }} {{ $transactionForBlock->sender->name }}</p>
+                    @else
+                    <p class="text-center">Expéditeur: Récompense</p>
+                    @endif
                     <p class="text-center">Destinataire: {{ $transactionForBlock->recipient->address }} {{ $transactionForBlock->recipient->name }}</p>
                     <p class="text-center">Montant: {{ number_format($transactionForBlock->amount, 2) }}</p>
                     <p class="text-center">Date: {{ $transactionForBlock->created_at }}</p>

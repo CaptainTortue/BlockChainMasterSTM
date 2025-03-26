@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Livewire\Component;
 
 class RegisterPage extends Component
@@ -38,6 +39,15 @@ class RegisterPage extends Component
         );
 
         auth()->login($user);
+
+        // create a wallet for the user
+
+        Wallet::create([
+            'name' => 'Premier Portefeuille',
+            'address' => \Illuminate\Support\Str::random(32),
+            'balance' => 1000,
+            'user_id' => $user->id
+        ]);
 
         return redirect()->to('/wallet');
     }

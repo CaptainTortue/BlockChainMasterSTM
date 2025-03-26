@@ -1,5 +1,5 @@
 @extends('layouts.menu')
 
 @section('content')
-@livewire('hash-text-page')
+@livewire('home-page')
 @endsection

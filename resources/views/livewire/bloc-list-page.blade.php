@@ -8,6 +8,7 @@
     @if ($blocs->count() == 0)
     <p class="text-center">Aucun bloc</p>
     @endif
+    @if(auth()->user())
     <!-- create block -->
     <div class="mx-auto w-fit">
         @if (auth()->user()->isAdmin())
@@ -17,4 +18,5 @@
         <button wire:click="mineBlock" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400">Miner un bloc</button>
         @endif
     </div>
+    @endif
 </div>

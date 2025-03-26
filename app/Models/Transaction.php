@@ -51,8 +51,10 @@ class Transaction extends Model
             $transaction->fee = round($transaction->amount * 0.001, 2);
             $transaction->hash = hash('sha256', $transaction->sender_id . $transaction->receiver_id . $transaction->amount . $transaction->nonce . $transaction->fee);
             // update wallet balance of sender and receiver
-            $transaction->sender->balance -= $transaction->amount + $transaction->fee;
-            $transaction->sender->save();
+            if ($transaction->sender_id) {
+                $transaction->sender->balance -= $transaction->amount + $transaction->fee;
+                $transaction->sender->save();
+            }
             $transaction->recipient->balance += $transaction->amount;
             $transaction->recipient->save();
         });

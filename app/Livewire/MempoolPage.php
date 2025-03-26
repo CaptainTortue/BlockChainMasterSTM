@@ -51,19 +51,42 @@ class MempoolPage extends Component
         $bloc = Bloc::create([
             'miner_id' => auth()->id(),
             'reward' => $this->totalFee,
-            'previous_hash' => Bloc::latest()->first()->hash ?? null,
+            'hash' => \Illuminate\Support\Str::random(32),
+            'difficulty' => 1
         ]);
+        $merkleRoot = '';
         // Add transactions to the block
-        $blocPosition = 0;
+        $blocPosition = 2;
         foreach ($this->transactionsForBlock as $transaction) {
             $transaction->bloc_id = $bloc->id;
             $transaction->bloc_position = $blocPosition;
             $transaction->save();
+            $merkleRoot .= $transaction->hash;
             $blocPosition++;
         }
+        $bloc->save();
+        // add transaction reward to the merkle root and to the bloc
+        $rewardTransaction = Transaction::create([
+            'sender_id' => null,
+            'receiver_id' => auth()->user()->wallets->first()->id,
+            'amount' => $this->totalAmount * 0.01,
+            'hash' => \Illuminate\Support\Str::random(32),
+            'nonce' => random_int(0, 100),
+            'fee' => 0,
+            'signature' => \Illuminate\Support\Str::random(32),
+            'bloc_position' => 1,
+            'bloc_id' => $bloc->id,
+        ]);
+        $merkleRoot .= $rewardTransaction->hash;
+        // hash the merkle root
+        $merkleRoot = hash('sha256', $merkleRoot);
+        $bloc->merkle_root = $merkleRoot;
+        $bloc->save();
         $this->transactionsForBlock = [];
         $this->totalFee = 0;
         $this->totalAmount = 0;
+        // remove transactions from list
+        $this->mempoolTransactions = Transaction::where('bloc_id', null)->orderBy('fee', 'desc')->get();
     }
 
     public function render()

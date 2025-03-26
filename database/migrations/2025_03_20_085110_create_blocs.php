@@ -17,13 +17,13 @@ return new class extends Migration
             $table->string('hash');
             // nullable if it's the first bloc or if it's not validate yet
             $table->string('previous_hash')->nullable();
-            $table->string('merkle_root');
+            $table->string('merkle_root')->nullable();
             $table->integer('difficulty');
             $table->float('reward', 8, 2);
             // user_id is the miner
             $table->foreignId('miner_id')->constrained('users');
             // number of value created by the miner
-            $table->float('value_created', 8, 2);
+            $table->float('value_created', 8, 2)->nullable();
         });
     }
 

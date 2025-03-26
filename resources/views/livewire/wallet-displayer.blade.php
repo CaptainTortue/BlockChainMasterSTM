@@ -41,7 +41,11 @@
             @foreach($transactions as $transaction)
             <tr class="border">
                 <td class="text-center p-4">{{ $transaction->id }}</td>
+                @if ($transaction->sender_id)
                 <td class="text-center p-4">{{ $transaction->sender->address }} {{ $transaction->sender->name }}</td>
+                @else
+                <td class="text-center">Expéditeur: Récompense</td>
+                @endif
                 <td class="text-center p-4">{{ $transaction->recipient->address }} {{ $transaction->recipient->name }}</td>
                 <td class="text-center p-4">{{ number_format($transaction->amount, 2) }}</td>
                 <td class="text-center p-4">{{ $transaction->created_at }}</td>

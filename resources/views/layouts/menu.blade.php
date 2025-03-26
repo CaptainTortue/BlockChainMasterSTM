@@ -11,8 +11,8 @@
 @livewireScripts
 @stack('scripts')
 <header>
-    <nav class="bg-blue-500 h-20 flex">
-        <ul class="flex gap-10 ml-10 mt-6">
+    <nav class="bg-blue-500 min-h-20 h-fit flex">
+        <ul class="flex flex-wrap gap-10 ml-10 my-6">
             <li><a class="font-bold text-white" href="/">Accueil</a></li>
             <li><a href="{{ url('/rsa-key-generation') }}" class="text-white">Génération de clé RSA</a></li>
             <li><a href="{{ url('/hash-text') }}" class="text-white">Hasher un texte</a></li>

@@ -10,9 +10,6 @@
     @endif
     <!-- create bloc -->
     <div class="mx-auto w-fit">
-        @if (auth()->user()->isAdmin())
-        <button wire:click="validatebloc" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400">Valider un bloc</button>
-        @endif
         @if (auth()->user()->isMiner())
         <button wire:click="minebloc" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400">Miner un bloc</button>
         @endif

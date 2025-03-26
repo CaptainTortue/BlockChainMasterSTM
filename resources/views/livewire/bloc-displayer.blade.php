@@ -7,6 +7,8 @@
             <p class="text-center">Hash précédent : {{ $bloc->previous_hash }}</p>
             <p class="text-center">Nonce : {{ $bloc->nonce }}</p>
             <p class="text-center">Créé le : {{ $bloc->created_at }}</p>
+            <p class="text-center">Approuvé le : {{ $bloc->updated_at }}</p>
+            <p class="text-center">Mineur : {{ $bloc->miner->name }}</p>
             <button wire:click="switchDisplayTransactions" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400">Afficher les transactions</button>
         </div>
         <!-- display transactions -->

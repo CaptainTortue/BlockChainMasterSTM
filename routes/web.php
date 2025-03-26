@@ -25,31 +25,41 @@ Route::get('/hash-text', function () {
     return view('hash-text-page');
 });
 
-Route::get('/wallet', function () {
-    return view('wallet-page');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/wallet', function () {
+        return view('wallet-page');
+    })->name('wallet');
+
+    Route::get('/mempool', function () {
+        return view('mempool-page');
+    })->name('mempool');
+
+    Route::get('/blocs', function () {
+        return view('bloc-list-page');
+    })->name('blocs');
+
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('/users', function () {
+            return view('users-page');
+        })->name('users');
+    });
+
+    Route::group(['middleware' => 'validator'], function () {
+        Route::get('/validate-bloc', function () {
+            return view('bloc-validation-page');
+        })->name('validate-bloc');
+    });
 });
 
 Route::get('/login', function () {
     return view('login-page');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('register-page');
-});
+})->name('register');
 
 Route::get('/logout', function () {
     auth()->logout();
     return redirect('/');
-});
-
-Route::get('mempool', function () {
-    return view('mempool-page');
-});
-
-Route::get('blocs', function () {
-    return view('bloc-list-page');
-});
-
-Route::get('validate-bloc', function () {
-    return view('bloc-validation-page');
-});
+})->name('logout');

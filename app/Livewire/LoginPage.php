@@ -9,6 +9,8 @@ class LoginPage extends Component
     public $login;
     public $password;
 
+    public $error = false;
+
     public function render()
     {
         return view('livewire.login-page');
@@ -23,6 +25,8 @@ class LoginPage extends Component
 
         if (auth()->attempt($this->only('login', 'password'))) {
             return redirect()->intended('/wallet');
+        } else {
+            $this->error = true;
         }
     }
 }

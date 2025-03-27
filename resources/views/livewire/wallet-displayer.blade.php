@@ -94,9 +94,11 @@
             <input type="number" wire:model="amount" placeholder="Montant" class="border-2 m-4">
             <button wire:click="sendMoney" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400">Envoyer de l'argent</button>
             <p wire:loading wire:target="sendMoney">Transaction en cours...</p>
+            @error('address') <span class="text-red-500">Portefeuille non-trouvé</span> @enderror
+            @error('amount') <span class="text-red-500">Montant invalide (probablement pas assez d'argent</span> @enderror
             <!-- success message -->
             @if ($successTransaction)
-            <span class="text-green-500">Transaction effectuée avec succès</span>
+            <span class="text-green-500">Transaction effectuée avec succès, frais : </span>
             @endif
         </div>
     </div>

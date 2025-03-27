@@ -53,7 +53,6 @@ class Transaction extends Model
             // update wallet balance of sender and receiver
             if ($transaction->sender_id) {
                 $transaction->sender->balance -= $transaction->amount + $transaction->fee;
-                $transaction->sender->save();
             }
             $transaction->recipient->balance += $transaction->amount;
             $transaction->recipient->save();

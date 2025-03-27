@@ -53,6 +53,11 @@ class WalletDisplayer extends Component
             'amount' => 'required|numeric|min:0.01',
             'address' => 'required|exists:wallet,address',
         ]);
+        // check if the wallet has enough money
+        if ($this->wallet->balance < $this->amount) {
+            $this->addError('amount', 'You do not have enough money');
+            return;
+        }
         $this->wallet->sendMoneyToOtherWallet($this->address, $this->amount);
         $this->reloadTransactions();
         // display success message

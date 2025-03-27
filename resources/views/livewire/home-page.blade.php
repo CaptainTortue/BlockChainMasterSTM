@@ -1,7 +1,9 @@
 <div>
     <p class="text-2xl m-2 text-center mt-4">Accueil</p>
     <p class="text-xl font-bold m-4 text-center w-full">Bienvenue sur la blockchain</p>
-    <p class="text-center">Vous devriez vous connexter, vous pourez créer un portefeuille, créer des blocs ou des transactions</p>
+    @if (auth()->user())
+    <p class="text-center">Vous êtes connecté en tant que {{ auth()->user()->role }}</p>
+    @endif
     @if (auth()->user())
     <div class="mx-auto w-fit">
         @if (auth()->user()->isAdmin())

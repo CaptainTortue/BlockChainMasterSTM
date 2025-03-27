@@ -23,7 +23,6 @@ class BlocFactory extends Factory
             'previous_hash' => Bloc::all()->count() > 0 ? Bloc::all()->last()->hash : null,
             'merkle_root' => $this->faker->sha256,
             'difficulty' => $this->faker->randomNumber(5),
-            'value_on_creation' => $this->faker->randomFloat(2, 1, 1000),
             'reward' => $this->faker->randomFloat(2, 0, 10),
             'miner_id' => 1,
             'value_created' => $this->faker->randomFloat(2, 1, 1000)

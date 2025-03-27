@@ -23,6 +23,9 @@
             @if(Auth::check() && Auth::user()->isMiner())
             <li><a href="{{ url('/mempool') }}" class="text-white">Mempool</a></li>
             @endif
+            @if(Auth::check() && Auth::user()->isAdmin())
+            <li><a href="{{ url('/users') }}" class="text-white">Utilisateurs</a></li>
+            @endif
             <!-- only if connected -->
             @if(Auth::check())
             <li><a href="{{ url('/wallet') }}" class="text-white">Portefeuille</a></li>
@@ -31,8 +34,10 @@
             <li><a href="{{ url('/login') }}" class="text-white">Connexion</a></li>
             <li><a href="{{ url('/register') }}" class="text-white">Inscription</a></li>
             @endif
-
         </ul>
+        @if(Auth::check())
+        <p class="text-white mr-10 my-6 ml-auto">{{ Auth::user()->name }}</p>
+        @endif
     </nav>
 </header>
 <main>

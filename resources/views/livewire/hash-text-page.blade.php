@@ -10,7 +10,7 @@
         @endif
     </div>
     <!-- hash to text -->
-    <p class="text-2xl m-2">Entrez votre hash</p>
+    <p class="text-2xl m-2">Entrez votre hash à vérifier</p>
     <input type="text" wire:model="hashToVerify" placeholder="Votre hash" class="border-2 m-4">
     <input type="text" wire:model="textToVerify" placeholder="Votre texte a vérifier" class="border-2 m-4">
     <button wire:click="checkHash" class="bg-blue-300 rounded p-2 border-2 hover:bg-blue-400">Hash To Text</button>

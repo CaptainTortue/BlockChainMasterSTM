@@ -7,6 +7,60 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Installation
+
+## Prérequis
+- PHP 8.1 (potentiezllement 8.2)
+- Laragon de préférence
+- Sinon XAMPP ou WAMP peut fonctionner
+- Nécessite composer installé pour installer les dépendances (présent dans laragon et potentiellement dans XAMPP et WAMP)
+
+````
+composer install
+````
+
+Dans le cas de laragon : 
+- Ouvrir laragon
+- Cliquer sur le bouton "démarrer" pour lancer les serveurs
+- Cliquer sur le bouton "Terminal" en bas à droite
+![img.png](readme%20files/imgLaragon.png)
+- Dans le terminal, taper la commande ci-dessus
+- Attendre que les dépendances soient installées
+- Une fois les dépendances installées, il faut récupérer la base de données
+- Laragon a un serveur sql et l'interface heidiSQL, si besoin on peut installer l'interface de MySQL
+- Créer une base de donnée nommé "blockchain"
+- commande de migration pour créer les tables : 
+````
+php artisan migrate
+````
+Normalment vous aurez une base de données avec les tables suivantes :
+![img.png](readme%20files/imgBDD.png)
+- commande de seed, pour avoir des données de tests, avec des users, des transactions a valider, etc...
+```
+php artisan db:seed
+```
+- exemple de commande pour créer des données de test en fonction de tel table
+````
+php artisan db:seed --class=BlocSeeder
+````
+
+Si besoin un dump de la BDD est dans le projet.
+
+Une fois le serveur lancé et la base de donénes, si votre configuration laragon est laisser par défault, le lien du site local sera
+http://blockchain.test/
+
+Sinon cette url peut fonctionner http://localhost/BlockChain/public/
+
+Le projet utilise tailwind pour le CSS, il faut donc installer les dépendances JS et CSS, pour cela il faut installer node.js, npm (présent dans laragon) et les dépendances JS et CSS
+````
+npm install
+````
+
+Une fois les dépendances installées, il faut compiler le CSS et JS, pour cela il faut lancer la commande suivante
+````
+npm run dev
+````
+![img.png](readme%20files/imgNPM.png)
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
